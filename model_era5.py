@@ -5,31 +5,41 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import tensorflow as tf
+from datetime import datetime  # <--- [新增] 用于生成时间戳
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
-from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.callbacks import EarlyStopping, CSVLogger
 from tensorflow.keras.optimizers import Adam
 
 # ==========================================
 # 1. 全局配置区 (Global Configuration)
 # ==========================================
 
-# --- 路径设置 ---
-# 请将此路径修改为您存放三个月CSV文件的文件夹路径
-DATA_DIR_PATH = './data_folder/' 
-
-# --- 数据处理参数 ---
-WINDOW_SIZE = 24        # 输入窗口：过去24小时
-FORECAST_HORIZON = 1    # 预测目标：未来第1个小时
-TRAIN_SPLIT_RATIO = 0.8 # 训练集比例 (前80%训练, 后20%测试)
-
 # --- 训练超参数 ---
-MODEL_TYPE = 'stacked'  # 可选: 'simple' 或 'stacked'
+MODEL_TYPE = 'simple'   # 可选: 'simple' 或 'stacked'
 BATCH_SIZE = 64
 EPOCHS = 100            # 最大轮数 (有早停机制，通常不会跑满)
 LEARNING_RATE = 0.001
 PATIENCE = 10           # 早停容忍度
+DROPOUT_RATE = 0.4      # Dropout比率
+
+# --- [新增] 实验 ID 生成 (Run ID) ---
+# 获取当前时间，例如: 20251216_143000
+# RUN_ID 将作为本次运行所有输出文件的唯一标识
+CURRENT_TIME = datetime.now().strftime("%Y%m%d_%H%M%S")
+RUN_ID = f"{MODEL_TYPE}_{CURRENT_TIME}"
+
+# --- 路径设置 ---
+# 请将此路径修改为您存放三个月CSV文件的文件夹路径
+DATA_DIR_PATH = './data/'       # 数据源路径
+RESULT_DIR = './result/'        # 图片和日志保存路径
+MODEL_DIR = './model/'          # 模型文件保存路径
+
+# --- 数据处理参数 ---
+WINDOW_SIZE = 24        # 输入窗口：过去24小时
+FORECAST_HORIZON = 3    # 预测目标：未来第1个小时
+TRAIN_SPLIT_RATIO = 0.8 # 训练集比例 (前80%训练, 后20%测试)
 
 # --- 特征列定义 ---
 # 基础特征 (原始数据中的列名)
@@ -44,6 +54,7 @@ TARGET_COL = 'ws_100'  # 我们计算出的合成风速(100m)作为预测目标
 # ==========================================
 
 def load_and_preprocess_data(data_dir):
+    print(f"[Info] 实验 ID (Run ID): {RUN_ID}")  # <--- [新增] 打印ID
     print(f"[Info] 正在从 {data_dir} 加载数据...")
     all_files = glob.glob(os.path.join(data_dir, "*.csv"))
     
@@ -138,93 +149,108 @@ def create_dataset(df, window_size, horizon, split_ratio):
     return X_train, y_train, X_test, y_test, scaler
 
 # ==========================================
-# 4. 模型定义 (包含普通LSTM和Stacked LSTM)
+# 4. 模型定义
 # ==========================================
 
-def build_model(input_shape, model_type='stacked'):
+def build_model(input_shape, model_type):
     model = Sequential()
     
     if model_type == 'simple':
         print("[Model] 构建 Simple LSTM 模型...")
-        # 单层 LSTM
         model.add(LSTM(64, input_shape=input_shape, return_sequences=False))
-        model.add(Dropout(0.2))
+        model.add(Dropout(DROPOUT_RATE))
         
     elif model_type == 'stacked':
-        print("[Model] 构建 Stacked LSTM 模型 (推荐)...")
-        # 第一层：必须 return_sequences=True 以传递时间步给下一层
+        print("[Model] 构建 Stacked LSTM 模型...")
         model.add(LSTM(128, input_shape=input_shape, return_sequences=True))
-        model.add(Dropout(0.2)) # 防止过拟合
-        
-        # 第二层：汇总时间特征
+        model.add(Dropout(DROPOUT_RATE))
         model.add(LSTM(64, return_sequences=False))
-        model.add(Dropout(0.2))
-        
-    else:
-        raise ValueError("未知模型类型，请选择 'simple' 或 'stacked'")
-
-    # 输出层 (回归任务，线性激活)
-    model.add(Dense(1))
+        model.add(Dropout(DROPOUT_RATE))
     
+    model.add(Dense(1))
     optimizer = Adam(learning_rate=LEARNING_RATE)
     model.compile(loss='mse', optimizer=optimizer, metrics=['mae'])
-    
     return model
 
 # ==========================================
-# 5. 可视化函数
+# 5. 可视化与保存辅助函数
 # ==========================================
 
-def plot_training_history(history, model_name):
+# [修改] 入参不再需要 model_name，直接使用全局 RUN_ID
+def plot_training_history(history):
     plt.figure(figsize=(12, 5))
     
-    # Loss 曲线
+    # Loss Plot
     plt.subplot(1, 2, 1)
-    plt.plot(history.history['loss'], label='Train Loss (MSE)')
-    plt.plot(history.history['val_loss'], label='Val Loss (MSE)')
-    plt.title(f'{model_name} Training Loss')
+    plt.plot(history.history['loss'], label='Train Loss')
+    plt.plot(history.history['val_loss'], label='Val Loss')
+    plt.title(f'{RUN_ID} Loss') # [修改] 标题使用 RUN_ID
     plt.xlabel('Epochs')
     plt.ylabel('MSE')
     plt.legend()
     plt.grid(True)
     
-    # MAE 曲线
+    # MAE Plot
     plt.subplot(1, 2, 2)
     plt.plot(history.history['mae'], label='Train MAE')
     plt.plot(history.history['val_mae'], label='Val MAE')
-    plt.title(f'{model_name} Mean Absolute Error')
+    plt.title(f'{RUN_ID} MAE') # [修改] 标题使用 RUN_ID
     plt.xlabel('Epochs')
     plt.ylabel('MAE')
     plt.legend()
     plt.grid(True)
     
     plt.tight_layout()
-    plt.savefig(f'training_history_{model_name}.png')
-    print(f"[Output] 训练曲线已保存为 training_history_{model_name}.png")
-    # plt.show() # 如果在非交互环境运行，请注释此行
+    # [修改] 文件名使用 RUN_ID
+    save_path = os.path.join(RESULT_DIR, f'history_{RUN_ID}.png')
+    plt.savefig(save_path)
+    print(f"[Output] 训练曲线已保存: {save_path}")
+    plt.close()
 
-def plot_predictions(y_true, y_pred, model_name, sample_size=200):
-    # 只画一部分数据以便观察细节
+# [修改] 入参不再需要 model_name
+def plot_predictions(y_true, y_pred, sample_size=200):
     plt.figure(figsize=(14, 6))
-    
     plt.plot(y_true[:sample_size], label='Actual Wind Speed (m/s)', color='blue', alpha=0.6)
     plt.plot(y_pred[:sample_size], label='Predicted Wind Speed (m/s)', color='red', linestyle='--', alpha=0.8)
-    
-    plt.title(f'{model_name}: Prediction vs Actual (First {sample_size} hours of Test Set)')
+    plt.title(f'{RUN_ID}: Prediction vs Actual (First {sample_size} hours)')
     plt.xlabel('Time Steps (Hours)')
     plt.ylabel('Wind Speed (m/s)')
     plt.legend()
     plt.grid(True)
     
-    plt.savefig(f'prediction_comparison_{model_name}.png')
-    print(f"[Output] 预测对比图已保存为 prediction_comparison_{model_name}.png")
-    # plt.show()
+    # [修改] 文件名使用 RUN_ID
+    save_path = os.path.join(RESULT_DIR, f'pred_compare_{RUN_ID}.png')
+    plt.savefig(save_path)
+    print(f"[Output] 预测图已保存: {save_path}")
+    plt.close()
+
+def save_experiment_config():
+    """保存本次实验的超参数配置，方便日后复盘"""
+    # [修改] 文件名使用 RUN_ID
+    config_path = os.path.join(RESULT_DIR, f'config_{RUN_ID}.txt')
+    with open(config_path, 'w') as f:
+        f.write(f"Run ID: {RUN_ID}\n") # [新增] 记录 Run ID
+        f.write(f"Timestamp: {CURRENT_TIME}\n")
+        f.write(f"Model Type: {MODEL_TYPE}\n")
+        f.write(f"Window Size: {WINDOW_SIZE}\n")
+        f.write(f"Learning Rate: {LEARNING_RATE}\n")
+        f.write(f"Batch Size: {BATCH_SIZE}\n")
+        f.write(f"Dropout Rate: {DROPOUT_RATE}\n")
+        f.write(f"Patience: {PATIENCE}\n")
+        f.write(f"Data Dir: {DATA_DIR_PATH}\n")
+    print(f"[Output] 实验配置已保存: {config_path}")
 
 # ==========================================
 # 6. 主程序入口
 # ==========================================
 
 if __name__ == "__main__":
+    # 0. 创建文件夹 (如果不存在)
+    os.makedirs(RESULT_DIR, exist_ok=True)
+    os.makedirs(MODEL_DIR, exist_ok=True)
+    print(f"[Init] 文件夹检查完毕: \n - {RESULT_DIR} \n - {MODEL_DIR}")
+    print(f"[Init] 当前实验 ID: {RUN_ID}") # [新增] 打印当前 ID
+
     # 1. 准备数据
     try:
         df = load_and_preprocess_data(DATA_DIR_PATH)
@@ -240,21 +266,24 @@ if __name__ == "__main__":
     model = build_model(input_shape, model_type=MODEL_TYPE)
     model.summary()
 
-    # 3. 训练模型
+    # 3. 训练模型 (加入 Log 保存)
     print(f"\n[Training] 开始训练 {MODEL_TYPE} 模型...")
-    early_stop = EarlyStopping(
-        monitor='val_loss', 
-        patience=PATIENCE, 
-        restore_best_weights=True,
-        verbose=1
-    )
+    
+    # 定义回调函数
+    callbacks_list = [
+        # EarlyStopping: 监控 val_loss, 没改善就停, 并恢复最佳权重
+        EarlyStopping(monitor='val_loss', patience=PATIENCE, restore_best_weights=True, verbose=1),
+        
+        # [修改] CSVLogger: 文件名使用 RUN_ID
+        CSVLogger(os.path.join(RESULT_DIR, f'training_log_{RUN_ID}.csv'))
+    ]
 
     history = model.fit(
         X_train, y_train,
         validation_data=(X_test, y_test),
         epochs=EPOCHS,
         batch_size=BATCH_SIZE,
-        callbacks=[early_stop],
+        callbacks=callbacks_list, # 使用列表
         verbose=1
     )
 
@@ -264,16 +293,17 @@ if __name__ == "__main__":
     print(f"Test MSE: {loss:.4f}")
     print(f"Test MAE: {mae:.4f}")
 
-    # 保存模型
-    model_filename = f'wind_speed_{MODEL_TYPE}_lstm.h5'
-    model.save(model_filename)
-    print(f"[Output] 模型已保存为 {model_filename}")
-
-    # 5. 可视化
-    plot_training_history(history, MODEL_TYPE)
+    # [修改] 保存模型到 model 文件夹，文件名使用 RUN_ID
+    model_path = os.path.join(MODEL_DIR, f'wind_speed_{RUN_ID}.h5')
+    model.save(model_path)
+    print(f"[Output] 模型已保存: {model_path}")
     
-    # 生成预测值进行对比绘图
-    y_pred = model.predict(X_test)
-    plot_predictions(y_test, y_pred, MODEL_TYPE)
+    # 保存参数配置
+    save_experiment_config()
 
-    print("\nDone. 所有任务完成。")
+    # 5. 可视化 (图片自动保存到 result 文件夹)
+    plot_training_history(history)
+    y_pred = model.predict(X_test)
+    plot_predictions(y_test, y_pred)
+
+    print(f"\nDone. 所有任务完成。本次实验 ID: {RUN_ID}")
