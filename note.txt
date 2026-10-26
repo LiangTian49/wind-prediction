@@ -23,3 +23,12 @@
 2. 尝试不同模型，调参，看看结果变化
 3. 24小时预测1小时可能太短了，尝试用更长的时间预测
 4. 在script中加入惯性预测MAE作为对比，如果LSTM Test MAE < naive_mae，说明模型学到了有效规律（需要reference）
+
+
+9.24
+跑script流程
+1. source /p/project1/sdlrs/tian1/wind_prediction/venv/bin/activate
+
+/p/project1/sdlrs/tian1/wind_prediction/venv/bin/python /p/project1/sdlrs/tian1/wind_prediction/selectpoints.py
+
+2. python 

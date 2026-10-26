@@ -7,6 +7,7 @@ import seaborn as sns
 import tensorflow as tf
 from datetime import datetime
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score # [新增] 引入 sklearn 的标准评估库
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping, CSVLogger
@@ -17,7 +18,7 @@ from tensorflow.keras.optimizers import Adam
 # ==========================================
 
 # --- 训练超参数 ---
-MODEL_TYPE = 'stacked'   # 可选: 'simple' 或 'stacked'
+MODEL_TYPE = 'simple'   # 可选: 'simple' 或 'stacked'
 BATCH_SIZE = 64
 EPOCHS = 100            # 最大轮数 (有早停机制，通常不会跑满)
 LEARNING_RATE = 0.001
@@ -28,7 +29,7 @@ DROPOUT_RATE = 0.4      # Dropout比率
 CURRENT_TIME = datetime.now().strftime("%Y%m%d_%H%M%S")
 RUN_ID = f"{MODEL_TYPE}_{CURRENT_TIME}"
 
-# --- [重大修改] 路径设置 ---
+# --- 路径设置 ---
 DATA_DIR_PATH = './data/CERRA/cerra_100_points_200km_summer_roi_2024.csv' # 数据源路径
 
 # 1. 设定所有实验结果的总根目录
@@ -37,7 +38,7 @@ BASE_OUT_DIR = './runs/'
 RUN_DIR = os.path.join(BASE_OUT_DIR, RUN_ID)
 
 # --- 数据处理参数 ---
-WINDOW_SIZE = 72        # 输入窗口：过去24小时 (8*3=24)
+WINDOW_SIZE = 56        # 输入窗口：过去24小时 (8*3=24)
 FORECAST_HORIZON = 1    # 预测目标：未来第1个小时 (3小时后)
 TRAIN_SPLIT_RATIO = 0.8 # 训练集比例 (前80%训练, 后20%测试)
 
@@ -143,23 +144,21 @@ def build_model(input_shape, model_type):
     return model
 
 # ==========================================
-# 5. 可视化与保存辅助函数 (全部指向 RUN_DIR)
+# 5. 可视化与保存辅助函数
 # ==========================================
 
 def plot_training_history(history):
     plt.figure(figsize=(12, 5))
     
-    # Loss Plot
     plt.subplot(1, 2, 1)
     plt.plot(history.history['loss'], label='Train Loss')
     plt.plot(history.history['val_loss'], label='Val Loss')
-    plt.title('Training Loss') 
+    plt.title('Training Loss (MSE)') 
     plt.xlabel('Epochs')
     plt.ylabel('MSE')
     plt.legend()
     plt.grid(True)
     
-    # MAE Plot
     plt.subplot(1, 2, 2)
     plt.plot(history.history['mae'], label='Train MAE')
     plt.plot(history.history['val_mae'], label='Val MAE')
@@ -170,7 +169,6 @@ def plot_training_history(history):
     plt.grid(True)
     
     plt.tight_layout()
-    # [修改] 保存至本次实验专属文件夹
     save_path = os.path.join(RUN_DIR, 'history.png')
     plt.savefig(save_path)
     print(f"[Output] 训练曲线已保存: {save_path}")
@@ -180,23 +178,21 @@ def plot_predictions(y_true, y_pred, sample_size=200):
     plt.figure(figsize=(14, 6))
     plt.plot(y_true[:sample_size], label='Actual Wind Speed (m/s)', color='blue', alpha=0.6)
     plt.plot(y_pred[:sample_size], label='Predicted Wind Speed (m/s)', color='red', linestyle='--', alpha=0.8)
-    plt.title(f'Prediction vs Actual (First {sample_size} hours)')
+    plt.title(f'Prediction vs Actual (First {sample_size} steps)')
     plt.xlabel('Time Steps')
     plt.ylabel('Wind Speed (m/s)')
     plt.legend()
     plt.grid(True)
     
-    # [修改] 保存至本次实验专属文件夹
     save_path = os.path.join(RUN_DIR, 'pred_compare.png')
     plt.savefig(save_path)
     print(f"[Output] 预测图已保存: {save_path}")
     plt.close()
 
 def save_experiment_config():
-    """保存本次实验的超参数配置，方便日后复盘"""
-    # [修改] 保存至本次实验专属文件夹
+    """保存本次实验的超参数配置"""
     config_path = os.path.join(RUN_DIR, 'config.txt')
-    with open(config_path, 'w') as f:
+    with open(config_path, 'w', encoding='utf-8') as f:
         f.write(f"Run ID: {RUN_ID}\n") 
         f.write(f"Timestamp: {CURRENT_TIME}\n")
         f.write(f"Model Type: {MODEL_TYPE}\n")
@@ -208,12 +204,20 @@ def save_experiment_config():
         f.write(f"Data Dir: {DATA_DIR_PATH}\n")
     print(f"[Output] 实验配置已保存: {config_path}")
 
+# --- [新增] 安全计算 MAPE 的辅助函数 ---
+def calculate_mape(y_true, y_pred):
+    """
+    计算 MAPE (Mean Absolute Percentage Error)。
+    为了防止真实风速中包含 0.0 导致除以零的错误，对分母加入微小的常数保护。
+    """
+    y_true_safe = np.maximum(y_true, 1e-8)
+    return np.mean(np.abs((y_true - y_pred) / y_true_safe)) * 100
+
 # ==========================================
 # 6. 主程序入口
 # ==========================================
 
 if __name__ == "__main__":
-    # 0. [修改] 创建本次实验专属的文件夹
     os.makedirs(RUN_DIR, exist_ok=True)
     print(f"[Init] 成功创建实验结果文件夹: \n -> {RUN_DIR}")
 
@@ -237,7 +241,6 @@ if __name__ == "__main__":
     
     callbacks_list = [
         EarlyStopping(monitor='val_loss', patience=PATIENCE, restore_best_weights=True, verbose=1),
-        # [修改] Log 存入专属文件夹
         CSVLogger(os.path.join(RUN_DIR, 'training_log.csv'))
     ]
 
@@ -250,23 +253,95 @@ if __name__ == "__main__":
         verbose=1
     )
 
-    # 4. 评估与保存
-    print("\n[Evaluation] 在测试集上评估...")
-    loss, mae = model.evaluate(X_test, y_test, verbose=0)
-    print(f"Test MSE: {loss:.4f}")
-    print(f"Test MAE: {mae:.4f}")
+    # 4. [全新修改区] 评估与顶级文献基准对比 
+    print("\n" + "="*50)
+    print("[Evaluation] 阶段 1: LSTM 模型在测试集上的表现")
+    print("="*50)
+    
+    # 获取预测值，将其扁平化以适配 sklearn 的函数要求
+    y_pred = model.predict(X_test, verbose=0).flatten()
+    y_test_flat = y_test.flatten()
 
-    # [修改] 模型权重存入专属文件夹
+    # 计算文献要求的四大指标
+    lstm_mse = mean_squared_error(y_test_flat, y_pred)
+    lstm_rmse = np.sqrt(lstm_mse)
+    lstm_mae = mean_absolute_error(y_test_flat, y_pred)
+    lstm_mape = calculate_mape(y_test_flat, y_pred)
+    lstm_r2 = r2_score(y_test_flat, y_pred)
+
+    print(f"-> LSTM Test RMSE: {lstm_rmse:.4f}")
+    print(f"-> LSTM Test MAE:  {lstm_mae:.4f}")
+    print(f"-> LSTM Test MAPE: {lstm_mape:.2f}%")
+    print(f"-> LSTM Test R²:   {lstm_r2:.4f}")
+
+    print("\n" + "="*50)
+    print("[Evaluation] 阶段 2: 计算绝对基准 (惯性预测 Persistence Forecast)")
+    print("="*50)
+    
+    # 构造惯性预测：将真实值向右平移 1 个步长对齐
+    y_naive_pred = y_test_flat[:-1]
+    y_true_aligned = y_test_flat[1:]
+
+    # 计算基准模型的四大指标
+    naive_mse = mean_squared_error(y_true_aligned, y_naive_pred)
+    naive_rmse = np.sqrt(naive_mse)
+    naive_mae = mean_absolute_error(y_true_aligned, y_naive_pred)
+    naive_mape = calculate_mape(y_true_aligned, y_naive_pred)
+    naive_r2 = r2_score(y_true_aligned, y_naive_pred)
+    
+    print(f"-> Persistence Test RMSE: {naive_rmse:.4f}")
+    print(f"-> Persistence Test MAE:  {naive_mae:.4f}")
+    print(f"-> Persistence Test MAPE: {naive_mape:.2f}%")
+    print(f"-> Persistence Test R²:   {naive_r2:.4f}")
+
+    # 计算提升幅度 (Improvement) - 论文中最核心的卖点
+    rmse_improvement = (naive_rmse - lstm_rmse) / naive_rmse * 100
+    mae_improvement = (naive_mae - lstm_mae) / naive_mae * 100
+    
+    print("\n" + "="*50)
+    print("[Conclusion] 最终评估结论 (论文级别)")
+    print("="*50)
+    print(f"相比于“惯性基准(Persistence)”，本模型实现了：")
+    print(f"   - RMSE 提升: {rmse_improvement:.2f}%")
+    print(f"   - MAE  提升: {mae_improvement:.2f}%\n")
+    
+    if rmse_improvement > 0 and mae_improvement > 0:
+        print("🎉 结论: 模型成功击败了基准线，学到了有效的气象物理特征！")
+    else:
+        print("⚠️ 警告: 模型表现未全面超越基准线，可能存在预测滞后或过拟合。")
+
+    # 保存模型权重
     model_path = os.path.join(RUN_DIR, 'model.h5')
     model.save(model_path)
-    print(f"[Output] 模型已保存: {model_path}")
     
     # 保存参数配置
     save_experiment_config()
 
+    # [全面扩充] 将详细评估矩阵写入 metrics.txt
+    metrics_path = os.path.join(RUN_DIR, 'metrics.txt')
+    with open(metrics_path, 'w', encoding='utf-8') as f:
+        f.write("=== Evaluation Metrics (Literature Standard) ===\n\n")
+        f.write("[1] LSTM Model Results:\n")
+        f.write(f"RMSE: {lstm_rmse:.4f}\n")
+        f.write(f"MAE:  {lstm_mae:.4f}\n")
+        f.write(f"MAPE: {lstm_mape:.2f}%\n")
+        f.write(f"R²:   {lstm_r2:.4f}\n\n")
+        
+        f.write("[2] Persistence Baseline Results:\n")
+        f.write(f"RMSE: {naive_rmse:.4f}\n")
+        f.write(f"MAE:  {naive_mae:.4f}\n")
+        f.write(f"MAPE: {naive_mape:.2f}%\n")
+        f.write(f"R²:   {naive_r2:.4f}\n\n")
+        
+        f.write("[3] Improvement (%):\n")
+        f.write(f"RMSE Improvement: {rmse_improvement:.2f}%\n")
+        f.write(f"MAE Improvement:  {mae_improvement:.2f}%\n")
+
+    print(f"[Output] 完整的评估指标矩阵已保存: {metrics_path}")
+
     # 5. 可视化
     plot_training_history(history)
-    y_pred = model.predict(X_test)
-    plot_predictions(y_test, y_pred)
+    # 我们上面已经 predict 过了，可以直接画图
+    plot_predictions(y_test_flat, y_pred)
 
     print(f"\n🎉 Done. 所有结果均已保存在: {RUN_DIR}")
