@@ -1,0 +1,17 @@
+{
+  "unique_fits": 72,
+  "new_fits": 54,
+  "reused_unique_fits": 18,
+  "evaluation_rows": 90,
+  "interval_rows": 456,
+  "interaction_rows": 72,
+  "daily_rows": 9576,
+  "block_days": 3,
+  "resamples": 2000,
+  "rng_seed": 20261115,
+  "date_assignment": "forecast_origin date",
+  "scope": "Post hoc window-conditional descriptive intervals, no multiplicity correction; no seed resampling or prediction ensemble",
+  "date_rule_change": "Previous P3/P3b analyses used target date. This version explicitly uses origin date for both stages to align leads; old outputs retained.",
+  "interaction": "Difference in paired RS percentage improvements, in percentage points; NOT a percentage change in errors",
+  "coverage": "History: all partitions matched to original 56-step/3h anchor. Horizon: 3h and 6h test origins matched, labels differ; native training/validation embargoes retained."
+}

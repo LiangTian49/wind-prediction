@@ -1,8 +1,55 @@
-venv/
+# Local Python environments and caches
+/wind-env/
+/venv/
+/.mplconfig/
+/.pip-tmp/
+__pycache__/
+*.py[cod]
 .ipynb_checkpoints/
-.ipynb_checkpoints
-data/
-model/
-result/
-runs/
-.gitignore
+.pytest_cache/
+*.egg-info/
+*.whl
+/environment/cds_setup_*/
+/environment/cds_install.lock
+/environment/cdsapi*.rc
+
+# Cluster-local inputs and experiment artifacts
+/data/
+/result/
+/runs/
+*.grib
+*.grib.*
+*.nc
+*.npz
+*.npy
+*.keras
+*.h5
+*.pkl
+*.pt
+*.pth
+*.ckpt*
+
+# Slurm output and temporary diagnostics
+/logs/*
+!/logs/README.md
+*.out
+*.err
+*.log
+
+# Local LaTeX compilation and manuscript upload bundles (keep source/figures optional)
+/docs/paper/**/build/
+/docs/paper/**/.texcache/
+/docs/paper/**/upload_bundle.zip
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+
+# Preserve the user's local instruction-file preference
+/AGENTS.md
+
+# Editor and OS files
+.DS_Store
+*~
+*.swp

@@ -1,0 +1,121 @@
+[
+  {
+    "fold_id": "F01",
+    "seed": 42,
+    "lead_hours": 3,
+    "origin_start": "2024-04-01 00:00:00",
+    "origin_end_exclusive": "2024-04-04 00:00:00",
+    "models": [
+      "LSTM A01",
+      "LSTM T01",
+      "Validation-selected P1 center"
+    ],
+    "locations": [
+      {
+        "grid_id": "532:541",
+        "lat": 49.89983404627405,
+        "lon": 8.537516732422219
+      },
+      {
+        "grid_id": "545:560",
+        "lat": 50.52666976056548,
+        "lon": 10.023040982573669
+      },
+      {
+        "grid_id": "549:578",
+        "lat": 50.69189460805866,
+        "lon": 11.436336497281475
+      }
+    ],
+    "selection": "Earliest common complete 72h; longitude-sorted first/middle/last target cells"
+  },
+  {
+    "fold_id": "F02",
+    "seed": 42,
+    "lead_hours": 3,
+    "origin_start": "2024-07-01 00:00:00",
+    "origin_end_exclusive": "2024-07-04 00:00:00",
+    "models": [
+      "LSTM A01",
+      "LSTM T01",
+      "Validation-selected P1 center"
+    ],
+    "locations": [
+      {
+        "grid_id": "532:541",
+        "lat": 49.89983404627405,
+        "lon": 8.537516732422219
+      },
+      {
+        "grid_id": "545:560",
+        "lat": 50.52666976056548,
+        "lon": 10.023040982573669
+      },
+      {
+        "grid_id": "549:578",
+        "lat": 50.69189460805866,
+        "lon": 11.436336497281475
+      }
+    ],
+    "selection": "Earliest common complete 72h; longitude-sorted first/middle/last target cells"
+  },
+  {
+    "fold_id": "F03",
+    "seed": 42,
+    "lead_hours": 3,
+    "origin_start": "2024-10-01 00:00:00",
+    "origin_end_exclusive": "2024-10-04 00:00:00",
+    "models": [
+      "LSTM A01",
+      "LSTM T01",
+      "Validation-selected P1 center"
+    ],
+    "locations": [
+      {
+        "grid_id": "532:541",
+        "lat": 49.89983404627405,
+        "lon": 8.537516732422219
+      },
+      {
+        "grid_id": "545:560",
+        "lat": 50.52666976056548,
+        "lon": 10.023040982573669
+      },
+      {
+        "grid_id": "549:578",
+        "lat": 50.69189460805866,
+        "lon": 11.436336497281475
+      }
+    ],
+    "selection": "Earliest common complete 72h; longitude-sorted first/middle/last target cells"
+  },
+  {
+    "fold_id": "F04",
+    "seed": 42,
+    "lead_hours": 3,
+    "origin_start": "2024-12-01 00:00:00",
+    "origin_end_exclusive": "2024-12-04 00:00:00",
+    "models": [
+      "LSTM A01",
+      "LSTM T01"
+    ],
+    "locations": [
+      {
+        "grid_id": "532:541",
+        "lat": 49.89983404627405,
+        "lon": 8.537516732422219
+      },
+      {
+        "grid_id": "545:560",
+        "lat": 50.52666976056548,
+        "lon": 10.023040982573669
+      },
+      {
+        "grid_id": "549:578",
+        "lat": 50.69189460805866,
+        "lon": 11.436336497281475
+      }
+    ],
+    "selection": "Earliest common complete 72h; longitude-sorted first/middle/last target cells"
+  }
+]

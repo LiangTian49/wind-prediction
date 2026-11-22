@@ -1,0 +1,88 @@
+{
+  "experiment_version": "rs_hpc_v3_history_v1",
+  "stage": "history",
+  "protocol": "v2_fixed",
+  "fold_manifest": "configs/seasonal_folds_2024.json",
+  "spatial_dir": "data/CERRA/spatial_2024_full",
+  "static_dir": "data/rs_static/features_v1",
+  "folds": [
+    "F01",
+    "F02",
+    "F03"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "groups": [
+    "RS_S0",
+    "RS_S1"
+  ],
+  "dynamic_groups": {
+    "T01": {
+      "file": "center.csv",
+      "features": [
+        "ws_10",
+        "hour_sin",
+        "hour_cos"
+      ]
+    },
+    "A01": {
+      "file": "A01.csv",
+      "features": [
+        "ws_10",
+        "ws_10_dy_m10_dx_m10",
+        "ws_10_dy_m10_dx_p0",
+        "ws_10_dy_m10_dx_p10",
+        "ws_10_dy_p0_dx_m10",
+        "ws_10_dy_p0_dx_p10",
+        "ws_10_dy_p10_dx_m10",
+        "ws_10_dy_p10_dx_p0",
+        "ws_10_dy_p10_dx_p10",
+        "hour_sin",
+        "hour_cos"
+      ]
+    }
+  },
+  "pred_len": 1,
+  "lr": 0.001,
+  "batch_size": 64,
+  "epochs": 100,
+  "patience": 10,
+  "architecture": "LSTM64_Dropout0.4_StaticDense8_Concat_Dense16_Dense1",
+  "direction_enabled": false,
+  "direction_selection": "runs/rs_hpc_v3/P1c/dynamic_selection.json",
+  "direction_selection_sha256": "c1319bee3e6adfff38133570b2f7688ff6f687736ce89e556c2d264539576030",
+  "static_ready_sha256": "247b47e82d9d08e6505f9fef578bfca94b7c4cd6b1f63424fb82b1438497fc9d",
+  "static_completion_sha256": "f5d91470bcf228ea42e9c81375845ed7dcdf3b377aee6524584bc18842dd6686",
+  "data_sha256": {
+    "T01": "760d2a97de83dd3d7e2f5a027293874f1961cb689f2a318ee6852590312406d5",
+    "A01": "47e69c086637d378a39416c70b390290c8c2e71a3b31db4092fdb5a9cddcc51b"
+  },
+  "legacy_sources": "result/spatial_analysis/analysis_912234/source_runs.json",
+  "p1_summary": "runs/rs_hpc_v3/P1/summary.csv",
+  "static_scope": "14 slots; train-grid scaling; masks after scaling; coordinates in slots latitude 0 and longitude 1",
+  "scientific_scope": "Post hoc 2024 development; new-year confirmation deferred, not cancelled",
+  "primary_pair": [
+    "RS_S1",
+    "RS_S0"
+  ],
+  "pilot_task_indices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "initial_task_count": 36,
+  "reference_manifest": "configs/rs_hpc_v3_p3b_v1_references.json",
+  "reference_manifest_sha256": "c58de4820f186010dd622141f624696ab43a1501452d72df78da7be81944a43d",
+  "input_lengths": [
+    8,
+    24
+  ],
+  "anchor_length": 56,
+  "anchor_config": "configs/rs_hpc_v3_p3b_v1.json",
+  "anchor_config_sha256": "c5923e00f0f521c1a90a2da36df97873440c821f3e4c99b552f624e2aecbf677",
+  "sample_policy": "All partitions use original 56-step/3h anchor origins; history crops inputs only"
+}

@@ -1,0 +1,22 @@
+{
+  "status": "validation_selected",
+  "rule": {
+    "metric": "validation_RMSE",
+    "primary_pair": [
+      "D_S1",
+      "D_S0"
+    ],
+    "aggregation": "equal-fold mean percentage gain",
+    "enable_if": "mean gain > 0",
+    "tie": "disabled",
+    "test_use": "exploratory reporting"
+  },
+  "validation_gain_by_fold": {
+    "F01": -2.468335933770982,
+    "F02": -0.8727662740217967,
+    "F03": -1.7605238003914003
+  },
+  "equal_fold_mean_gain_pct": -1.7005420027280598,
+  "direction_enabled": false,
+  "scope": "Development selection; new-time confirmation still required."
+}

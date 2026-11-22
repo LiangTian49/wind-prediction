@@ -1,0 +1,60 @@
+{
+  "status": "frozen_for_confirmation",
+  "created_utc": "2026-11-05T22:59:32.482543+00:00",
+  "fold_manifest": "configs/seasonal_folds_2024.json",
+  "fold_manifest_sha256": "595967de0fb10671aae31570e3de9daf005d756f2508029b9742ba6df205c866",
+  "confirmation_fold": "F04",
+  "confirmation_dates": {
+    "fold_id": "F04",
+    "train_start": "2024-09-04 00:00:00",
+    "validation_start": "2024-11-03 00:00:00",
+    "test_start": "2024-12-01 00:00:00",
+    "test_end_exclusive": "2024-12-29 00:00:00",
+    "role": "locked_confirmation",
+    "season_representative": "winter"
+  },
+  "spatial_dir": "data/CERRA/spatial_2024_full",
+  "development_run_count": 240,
+  "development_report": "result/spatial_analysis/analysis_912200",
+  "groups": [
+    "T01",
+    "S01",
+    "S02",
+    "A01"
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "forecast_steps": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "hyperparameters": {
+    "model_type": "lstm",
+    "input_len": 56,
+    "lr": 0.001,
+    "batch_size": 64,
+    "epochs": 100,
+    "patience": 10,
+    "dropout": 0.4
+  },
+  "code_sha256": {
+    "train.py": "41ef788e19a19901a54ab648a5e2ebb1dda10ead475bf112775cda8b86c47aff",
+    "temporal_folds.py": "c2497cffeb056cfb10b322ad5c1f9e84bafc40761a46405d7ba4f8820b77dd04",
+    "run_ablation.sh": "9e41a0d53ad9d5e63ba51a2c667d34e22771ff48ffaf666f6f635ded2664b62e",
+    "run_confirmation.sh": "84e3837c061ced8339516a2eb4ccfa3cfe17de4593ccac7febaf6f3d459d2763"
+  },
+  "development_report_sha256": {
+    "result/spatial_analysis/analysis_912200/coverage.json": "d6f43817cffbe28f9e3101664039d0197f9448185899694f0a8530cf5400d162",
+    "result/spatial_analysis/analysis_912200/source_runs.json": "770eb70ded51a5cfa02d9a5e2c5e7199e88727e52a1234a6144575b8efd5a863",
+    "result/spatial_analysis/analysis_912200/paired_seed_summary.csv": "cd9c17d6d57a0c64fec8d0c0d6afcaba8f3b46ab5e14dfaff82c2c20f64edd40"
+  },
+  "decision": "Retain all four original groups, horizons, seeds and settings. No winner-only selection.",
+  "confirmation_policy": "Report F04 as confirmation; do not tune this frozen experiment using F04 scores."
+}

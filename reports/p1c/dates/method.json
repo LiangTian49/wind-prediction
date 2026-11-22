@@ -1,0 +1,9 @@
+{
+  "status": "completed",
+  "configurations": 12,
+  "interval_rows": 42,
+  "block_days": 3,
+  "resamples": 2000,
+  "rng_seed": 20261113,
+  "selection_uses": "registered development validation rule only"
+}

@@ -1,0 +1,328 @@
+{
+  "date": "2026-11-13",
+  "moves": [
+    {
+      "old": "EXPERIMENT_RECORD_AND_PLAN.md",
+      "new": "docs/experiments/EXPERIMENT_RECORD_AND_PLAN.md",
+      "sha256_before": "664f37e7e3bcbb46a0f4c508190d50619356ce85203d02d2caf2137e78a2ca13",
+      "sha256_after": "e21cc73f6bab4d91e40e9c3e8222a6fde48935f752adb91aab4735b3bca9775e",
+      "edited_after_move": true
+    },
+    {
+      "old": "PROGRESS_LOG.md",
+      "new": "docs/experiments/PROGRESS_LOG.md",
+      "sha256_before": "104554465f2ccadad6d5628cf2bf149d234bda61ecbe7bc7b5feb05d621c17e8",
+      "sha256_after": "dddff0ebd3b937bb6511f6baa09e31a266abfcbbe7942d95aa3b5b02bdb167ff",
+      "edited_after_move": true
+    },
+    {
+      "old": "WIND_EXPERIMENT_TASKS_FOR_CODEX.md",
+      "new": "docs/experiments/WIND_EXPERIMENT_TASKS_FOR_CODEX.md",
+      "sha256_before": "8a059975df71abac1820ed8eed27809751ddd0a78f714faeb3d863cd6326a099",
+      "sha256_after": "02608bfc0b2b0785a2db4fd2e123f01f1c0cea44975999b63cf439c48fcc2917",
+      "edited_after_move": true
+    },
+    {
+      "old": "WIND_FEEDBACK_PLAN_UPDATE_2026-11-11.md",
+      "new": "docs/experiments/WIND_FEEDBACK_PLAN_UPDATE_2026-11-11.md",
+      "sha256_before": "88065b5c7f319ef0d39dbdc4e54fba5e39db3f1e2713f39f8dbfd00d9b82d8f5",
+      "sha256_after": "ea3f93c1d8494c1651efff243105ea1dd49474a950b407a4375f4580cc32d919",
+      "edited_after_move": true
+    },
+    {
+      "old": "ANNUAL_DATA_AND_FOLDS.md",
+      "new": "docs/runbooks/ANNUAL_DATA_AND_FOLDS.md",
+      "sha256_before": "2fa95ebaa75df9e179d7af93558d9e2ae6ebdc9be4b1aaf5bf03af2577b5cda0",
+      "sha256_after": "8751658eeba1a6dc07afba8f0e772f970605fbde382d8bd988f8c00608379365",
+      "edited_after_move": true
+    },
+    {
+      "old": "DIRECTION_AND_ROI_RUNBOOK.md",
+      "new": "docs/runbooks/DIRECTION_AND_ROI_RUNBOOK.md",
+      "sha256_before": "940bb5bae4ebde4a6a2744bc8a213dd7e9e8efca809a9506a96ff65bdd8648b3",
+      "sha256_after": "3443e61202b0b55168770c58ddb24b16896bbfc62fc179e9908ca81a43816b70",
+      "edited_after_move": true
+    },
+    {
+      "old": "EXPERIMENT_NEXT_STEPS.md",
+      "new": "docs/archive/EXPERIMENT_NEXT_STEPS.md",
+      "sha256_before": "4c9168b373c5275c4dd07ccc8ff65de12067740bb58ebb5b79c75949b5bfb4ed",
+      "sha256_after": "f717389284b27049e0179df82ca66abae11cf04f128a1f2f5ec365604f9ec108",
+      "edited_after_move": true
+    },
+    {
+      "old": "EXPERIMENT_SUMMARY_AND_V2.md",
+      "new": "docs/archive/EXPERIMENT_SUMMARY_AND_V2.md",
+      "sha256_before": "db6e4457d58b9d3bf7f37afca3f639928b18d860dcebbbbc1e2f7648fe0fe40a",
+      "sha256_after": "ec201f58ccb1e750fd5cfbd31a7c4df32f3d7749e50efc1db75adeae58b1263b",
+      "edited_after_move": true
+    },
+    {
+      "old": "note.txt",
+      "new": "docs/archive/note.txt",
+      "sha256_before": "0b73fbd7567360a0a6ea4082f35ca9b18206c9d0ed668257e7266cc5ae72d79a",
+      "sha256_after": "0b73fbd7567360a0a6ea4082f35ca9b18206c9d0ed668257e7266cc5ae72d79a",
+      "edited_after_move": false
+    },
+    {
+      "old": "Remote_Sensing_and_Reanalysis_Driven_Deep_Learning_for_Spatially_Informed_Wind_Speed_Forecasting.pdf",
+      "new": "docs/paper/Remote_Sensing_and_Reanalysis_Driven_Deep_Learning_for_Spatially_Informed_Wind_Speed_Forecasting.pdf",
+      "sha256_before": "6320a75757226733dd90154a1990770063d7e9955ffa45ba37ccd96ce01786f5",
+      "sha256_after": "6320a75757226733dd90154a1990770063d7e9955ffa45ba37ccd96ce01786f5",
+      "edited_after_move": false
+    },
+    {
+      "old": "check_dist_cerra_ws_10.png",
+      "new": "docs/archive/figures/check_dist_cerra_ws_10.png",
+      "sha256_before": "691622e782931e7e1566b3af1f9ce7de0452bdbd3cbae661b6289dcb5665bd5e",
+      "sha256_after": "691622e782931e7e1566b3af1f9ce7de0452bdbd3cbae661b6289dcb5665bd5e",
+      "edited_after_move": false
+    },
+    {
+      "old": "check_dist_ws_10.png",
+      "new": "docs/archive/figures/check_dist_ws_10.png",
+      "sha256_before": "9a9b5c713700e6737d5eae60a17298b2662576b45517fbf327f95565f4eed7bb",
+      "sha256_after": "9a9b5c713700e6737d5eae60a17298b2662576b45517fbf327f95565f4eed7bb",
+      "edited_after_move": false
+    },
+    {
+      "old": "check_dist_ws_100.png",
+      "new": "docs/archive/figures/check_dist_ws_100.png",
+      "sha256_before": "041f6841f08c1a467d3f199eb8cd0d7393e27673df5ef75262e94a3f90f8d78c",
+      "sha256_after": "041f6841f08c1a467d3f199eb8cd0d7393e27673df5ef75262e94a3f90f8d78c",
+      "edited_after_move": false
+    },
+    {
+      "old": "use_case_spatial_gradient.png",
+      "new": "docs/archive/figures/use_case_spatial_gradient.png",
+      "sha256_before": "13f3e17addbedb3519ee708dbc6a98850656a182343bea28437f6b324234122e",
+      "sha256_after": "13f3e17addbedb3519ee708dbc6a98850656a182343bea28437f6b324234122e",
+      "edited_after_move": false
+    },
+    {
+      "old": "getdata.py",
+      "new": "legacy/getdata.py",
+      "sha256_before": "59187acc39ac09894fb2de584524cff4ed9dfdae659ef534b5296aeadc71a814",
+      "sha256_after": "59187acc39ac09894fb2de584524cff4ed9dfdae659ef534b5296aeadc71a814",
+      "edited_after_move": false
+    },
+    {
+      "old": "selectpoints.py",
+      "new": "legacy/selectpoints.py",
+      "sha256_before": "abe7e23542eddd69c871f16c3c1be8d5de7f394a83b976abce54d60d2d6bc6b1",
+      "sha256_after": "abe7e23542eddd69c871f16c3c1be8d5de7f394a83b976abce54d60d2d6bc6b1",
+      "edited_after_move": false
+    },
+    {
+      "old": "checkcerra.py",
+      "new": "legacy/checkcerra.py",
+      "sha256_before": "fab40cdbde83fea34f18444a3aa483dd6b77415c2c111e0e70e3147233001b77",
+      "sha256_after": "fab40cdbde83fea34f18444a3aa483dd6b77415c2c111e0e70e3147233001b77",
+      "edited_after_move": false
+    },
+    {
+      "old": "checkdata_cerra.py",
+      "new": "legacy/checkdata_cerra.py",
+      "sha256_before": "337ab71564e32436faaa07a9289ff197e8383faf6d0675f6911545432fa00aad",
+      "sha256_after": "337ab71564e32436faaa07a9289ff197e8383faf6d0675f6911545432fa00aad",
+      "edited_after_move": false
+    },
+    {
+      "old": "checkdata_era5.py",
+      "new": "legacy/checkdata_era5.py",
+      "sha256_before": "ec019a38fd5c5791e0f15efa658d15f87a5aa7d740367d68b80d45d25a19a0c4",
+      "sha256_after": "ec019a38fd5c5791e0f15efa658d15f87a5aa7d740367d68b80d45d25a19a0c4",
+      "edited_after_move": false
+    },
+    {
+      "old": "model_cerra.py",
+      "new": "legacy/model_cerra.py",
+      "sha256_before": "8394052d2a6d6b6680f15d26ad919cc1e3b1e1a36fb472f0e7a3d8ce3dfaec81",
+      "sha256_after": "8394052d2a6d6b6680f15d26ad919cc1e3b1e1a36fb472f0e7a3d8ce3dfaec81",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_fold_repeats.sh",
+      "new": "slurm/run_fold_repeats.sh",
+      "sha256_before": "e270ab127dbd950d541a84b1baeae0bec90ac335279678ba3022542ce303f0b4",
+      "sha256_after": "e270ab127dbd950d541a84b1baeae0bec90ac335279678ba3022542ce303f0b4",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_p0b.sh",
+      "new": "slurm/run_p0b.sh",
+      "sha256_before": "73ab602a8309af6234c01dd75aef9369eddb975df38834e864e35192c4941674",
+      "sha256_after": "73ab602a8309af6234c01dd75aef9369eddb975df38834e864e35192c4941674",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_seasonal_diagnostics.sh",
+      "new": "slurm/run_seasonal_diagnostics.sh",
+      "sha256_before": "68119c69f2834b7479e5616da01c843d357d4cfaba1a457f5364477593c084dc",
+      "sha256_after": "68119c69f2834b7479e5616da01c843d357d4cfaba1a457f5364477593c084dc",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_v2.sh",
+      "new": "slurm/run_v2.sh",
+      "sha256_before": "4c3701313902aa420cb721dce828ab59ef1e9c4bbb044a02aab729a377b1e5e5",
+      "sha256_after": "4c3701313902aa420cb721dce828ab59ef1e9c4bbb044a02aab729a377b1e5e5",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_p1_analysis.sh",
+      "new": "slurm/run_p1_analysis.sh",
+      "sha256_before": "39eb3dd5b5a3a548cccb64ee8deb726215fef595f0a138a8b425d46b2264a91e",
+      "sha256_after": "39eb3dd5b5a3a548cccb64ee8deb726215fef595f0a138a8b425d46b2264a91e",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_prepare_year.sh",
+      "new": "slurm/run_prepare_year.sh",
+      "sha256_before": "5db70a6bf6e76a6b11ec22ce077cde0acc3add38edb9c7d3d3b2b0d4f5c9cb3b",
+      "sha256_after": "5db70a6bf6e76a6b11ec22ce077cde0acc3add38edb9c7d3d3b2b0d4f5c9cb3b",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_p1c.sh",
+      "new": "slurm/run_p1c.sh",
+      "sha256_before": "5d109b3e9aca5c04d195f76ad43fdc233be0200d4ad74423eb55fece56dec34f",
+      "sha256_after": "5d109b3e9aca5c04d195f76ad43fdc233be0200d4ad74423eb55fece56dec34f",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_folds.sh",
+      "new": "slurm/run_folds.sh",
+      "sha256_before": "d06e96be42d33948c6d2b45d6814ea3e1747360eb29caaa5d3061f7d4a63fa2d",
+      "sha256_after": "d06e96be42d33948c6d2b45d6814ea3e1747360eb29caaa5d3061f7d4a63fa2d",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_repeats.sh",
+      "new": "slurm/run_repeats.sh",
+      "sha256_before": "4aaa1b96ec9da27c06df5a3406b00325bc7e7e88283c4c44291046c9ab6a8bff",
+      "sha256_after": "4aaa1b96ec9da27c06df5a3406b00325bc7e7e88283c4c44291046c9ab6a8bff",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_ablation.sh",
+      "new": "slurm/run_ablation.sh",
+      "sha256_before": "9e41a0d53ad9d5e63ba51a2c667d34e22771ff48ffaf666f6f635ded2664b62e",
+      "sha256_after": "9e41a0d53ad9d5e63ba51a2c667d34e22771ff48ffaf666f6f635ded2664b62e",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_p1_baselines.sh",
+      "new": "slurm/run_p1_baselines.sh",
+      "sha256_before": "91233b04eb71cbd2b49585604b66d1dea96d73825ad9e1130234e6ad051ed44b",
+      "sha256_after": "91233b04eb71cbd2b49585604b66d1dea96d73825ad9e1130234e6ad051ed44b",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_confirmation.sh",
+      "new": "slurm/run_confirmation.sh",
+      "sha256_before": "84e3837c061ced8339516a2eb4ccfa3cfe17de4593ccac7febaf6f3d459d2763",
+      "sha256_after": "84e3837c061ced8339516a2eb4ccfa3cfe17de4593ccac7febaf6f3d459d2763",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_analysis.sh",
+      "new": "slurm/run_analysis.sh",
+      "sha256_before": "b6f23e541cb95bf24f06ad960d9d7f2523383d6d686103bb1e8ebb2140524685",
+      "sha256_after": "b6f23e541cb95bf24f06ad960d9d7f2523383d6d686103bb1e8ebb2140524685",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_p1c_analysis.sh",
+      "new": "slurm/run_p1c_analysis.sh",
+      "sha256_before": "7c8fb58f8dc7663575b37ea654808fef3ef2c30aeb7cee2893d8dffb2be8e83b",
+      "sha256_after": "7c8fb58f8dc7663575b37ea654808fef3ef2c30aeb7cee2893d8dffb2be8e83b",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_p0_audit.sh",
+      "new": "slurm/run_p0_audit.sh",
+      "sha256_before": "d6e406d1fc278a897eeb0979d40f1920b242e46787ecf352002e997afd4fa8c7",
+      "sha256_after": "d6e406d1fc278a897eeb0979d40f1920b242e46787ecf352002e997afd4fa8c7",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_extract_cerra.sh",
+      "new": "slurm/run_extract_cerra.sh",
+      "sha256_before": "65e70044e2e6aa1e3a871d930bafdb3963915dd26fc34867d8a419fdf6d1a593",
+      "sha256_after": "65e70044e2e6aa1e3a871d930bafdb3963915dd26fc34867d8a419fdf6d1a593",
+      "edited_after_move": false
+    },
+    {
+      "old": "run_extract_direction.sh",
+      "new": "slurm/run_extract_direction.sh",
+      "sha256_before": "13aa66b0334d9e15c9d494a2ba24c5c65e371615dfb77ff8bf47fd539aba6a0a",
+      "sha256_after": "13aa66b0334d9e15c9d494a2ba24c5c65e371615dfb77ff8bf47fd539aba6a0a",
+      "edited_after_move": false
+    },
+    {
+      "old": "test_v2_protocol.py",
+      "new": "tests/test_v2_protocol.py",
+      "sha256_before": "04e0debce58d8a2cfc9af5e139d0c21947e2ca7f5ef1bdefc91dd43322760b7e",
+      "sha256_after": "04e0debce58d8a2cfc9af5e139d0c21947e2ca7f5ef1bdefc91dd43322760b7e",
+      "edited_after_move": false
+    },
+    {
+      "old": "test_rs_hpc_v3.py",
+      "new": "tests/test_rs_hpc_v3.py",
+      "sha256_before": "3859ab3b6c74df77cfd63eba9a62bdd62078b13791490ed596197510e8b8409f",
+      "sha256_after": "3859ab3b6c74df77cfd63eba9a62bdd62078b13791490ed596197510e8b8409f",
+      "edited_after_move": false
+    },
+    {
+      "old": "test_annual_readiness.py",
+      "new": "tests/test_annual_readiness.py",
+      "sha256_before": "2a7b1be769bc6b21c95f1384eb47e642d1cf8b3aa70bdf9d989e22f78308e6e0",
+      "sha256_after": "55ab4d97abca41b726c55db7b2c8957c2ec55d2715508e7cfa4aec17f61ee5ec",
+      "edited_after_move": true
+    },
+    {
+      "old": "test_experiment_pipeline.py",
+      "new": "tests/test_experiment_pipeline.py",
+      "sha256_before": "829b967811c2777f694358edd110fd5530114832290cca0906be9bbb727200f8",
+      "sha256_after": "829b967811c2777f694358edd110fd5530114832290cca0906be9bbb727200f8",
+      "edited_after_move": false
+    },
+    {
+      "old": "test_extract_cerra_spatial.py",
+      "new": "tests/test_extract_cerra_spatial.py",
+      "sha256_before": "2387b3d2ce37d4bab1d6cdfc44f1e692537f21b617663c404565f4af6bee88e3",
+      "sha256_after": "2387b3d2ce37d4bab1d6cdfc44f1e692537f21b617663c404565f4af6bee88e3",
+      "edited_after_move": false
+    },
+    {
+      "old": "test_direction_pipeline.py",
+      "new": "tests/test_direction_pipeline.py",
+      "sha256_before": "6617ced61dd9f86bc56b7de1460adafcadd048ce7147c6b89ac9415798490424",
+      "sha256_after": "6617ced61dd9f86bc56b7de1460adafcadd048ce7147c6b89ac9415798490424",
+      "edited_after_move": false
+    },
+    {
+      "old": "test_fixed_folds.py",
+      "new": "tests/test_fixed_folds.py",
+      "sha256_before": "e1b7144d0894946f7dbc21f7cd52422b28971e0f04827813c96724fc43d7ca79",
+      "sha256_after": "3081813be4cc51ad532946f83cb8d797521cf4acf1b88dd75c784032a970988b",
+      "edited_after_move": true
+    }
+  ],
+  "root_compatibility_symlinks": [
+    "run_ablation.sh",
+    "run_confirmation.sh"
+  ],
+  "invariant": "Production Python sources, configurations, data and experiment artifacts retain their paths and bytes.",
+  "verification": {
+    "lightweight_tests_passed": 28,
+    "slurm_syntax": "passed",
+    "frozen_hashes": "passed",
+    "navigation_links": "passed",
+    "git_artifact_exclusions": "passed",
+    "root_file_entries": 27,
+    "reports_exported": 22,
+    "git_commit_and_push": "not_executed"
+  }
+}

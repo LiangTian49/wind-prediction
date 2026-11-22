@@ -1,0 +1,106 @@
+{
+  "implementation_date": "2026-11-19",
+  "status": "incomplete_recovery_prepared",
+  "tests_passed": 9,
+  "python_compile": "passed",
+  "shell_syntax": "passed",
+  "dependency_install_executed": true,
+  "cdsapi_initially_installed": false,
+  "cds_requests_sent": 24,
+  "downloaded_months": 3,
+  "months_planned": 24,
+  "years_order": [
+    2025,
+    2023
+  ],
+  "product_type": "analysis",
+  "leadtime_hour_omitted": true,
+  "credentials_read": false,
+  "confirmation_config_changed": false,
+  "code_sha256": {
+    "download_cerra_confirmation.py": "50edb7d7b2ed0b4d75262299211e6698c5b3a9d07b564a5b683d2df0119b8a66",
+    "scripts/setup_cds_download.py": "924f940f4d8f94ff9097d742131afe5a2cc4abd38393a97ad32eb9cb427bc675",
+    "slurm/run_cerra_download_setup.sh": "82b469c4191b528cee7173cab5e57dd6c9a36ca95b19b354c46e36397d417320",
+    "slurm/run_cerra_download.sh": "df65908ce48d4186e45f79829fdeffb6f0f88c2dc86f4e6247e6ec6be47967a8",
+    "tests/test_cerra_confirmation_download.py": "461f7a343cf5e7bd586ba0baa663cb435b5ca877546b67835039f4ec654dc4d4",
+    "environment/activate_wind_env.sh": "b8de48da7b95f7350771a81cd2be3ae75e2080a818f0620546d977203a6cf950",
+    "cerra_download_remote.py": "a94c29698353d6271251dbbba02adf547ad6b534d2e21181213366672bd6d958",
+    "recover_cerra_downloads.py": "3bac60e76da4ccec486ae1813be5b818eceb0566b7aa13b698d52b326fb420fd",
+    "slurm/run_cerra_download_recover.sh": "c79daedd83eba2fa1f0a1570949b87c6d8bc2dc39cab96b790a707f1e01e8ce9"
+  },
+  "last_setup_job": {
+    "job_id": "913326",
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:00:33",
+    "installer_step_elapsed": "00:00:08",
+    "existing_versions_unchanged": true,
+    "added": {
+      "multiurl": "0.3.10",
+      "tqdm": "4.70.1",
+      "cdsapi": "0.7.7",
+      "ecmwf-datastores-client": "0.6.0"
+    }
+  },
+  "bootstrap_fix": {
+    "file": "environment/activate_wind_env.sh",
+    "action": "Restore /p/software/deep/otherstages before loading the Python 3.12.3 stack",
+    "login_missing_stage_path_test": "passed",
+    "compute_node_retry": "passed in job 913326"
+  },
+  "last_download_job": {
+    "job_id": "913327_0",
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:02:28",
+    "month": "2025-01",
+    "bytes": 1134142192,
+    "records_per_variable": 248,
+    "headers_passed": true,
+    "receipt_sha256": "f9f89f0ee60cead65b26217ac3d3cb5cfdae3b6816f494da91bfb09181f869c6",
+    "acceptance_scope": "Slurm/log/receipt/size/downloader hash checked; no large-file rehash or field decode on login node"
+  },
+  "completed_months": [
+    "2025-01",
+    "2025-02",
+    "2025-05"
+  ],
+  "missing_tasks": [
+    2,
+    3,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "last_array_audit": {
+    "array_id": "913328",
+    "completed": 2,
+    "timeout": 5,
+    "failed": 16,
+    "failure_reason": "CDS maximum queued requests; old remote jobs may survive Slurm timeout"
+  },
+  "retry_protocol": {
+    "concurrency": 1,
+    "walltime": "20:00:00",
+    "partition_limit_verified_with_sinfo": true,
+    "recover_remote_ids_before_retry": true,
+    "remote_recovery_executed": false
+  },
+  "acceptance_scope": "Small receipts/file stats/logs/sacct only; no GRIB scan or full-file rehash on login"
+}

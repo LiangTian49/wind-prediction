@@ -1,0 +1,23 @@
+{
+  "experiment_version": "rs_hpc_v3",
+  "stage": "P1",
+  "protocol": "v2_fixed",
+  "fold_manifest": "configs/seasonal_folds_2024.json",
+  "spatial_dir": "data/CERRA/spatial_2024_full",
+  "legacy_analysis": "result/spatial_analysis/analysis_912234",
+  "folds": ["F01", "F02", "F03"],
+  "forecast_steps": [1, 2, 4, 8],
+  "lookback": 56,
+  "seed": 42,
+  "groups": {
+    "T01": {"file": "center.csv", "features": ["ws_10", "hour_sin", "hour_cos"]},
+    "A01": {"file": "A01.csv", "features": ["ws_10", "ws_10_dy_m10_dx_m10", "ws_10_dy_m10_dx_p0", "ws_10_dy_m10_dx_p10", "ws_10_dy_p0_dx_m10", "ws_10_dy_p0_dx_p10", "ws_10_dy_p10_dx_m10", "ws_10_dy_p10_dx_p0", "ws_10_dy_p10_dx_p10", "hour_sin", "hour_cos"]}
+  },
+  "models": {
+    "ridge": [{"alpha": 0.1}, {"alpha": 1}, {"alpha": 10}, {"alpha": 100}],
+    "hist_gradient_boosting": [
+      {"max_iter": 100, "max_leaf_nodes": 15, "learning_rate": 0.08},
+      {"max_iter": 150, "max_leaf_nodes": 31, "learning_rate": 0.05}
+    ]
+  }
+}

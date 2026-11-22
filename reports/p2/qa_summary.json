@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "unique_grids": 98,
+  "point_ids": 100,
+  "features": 14,
+  "failed_grids": [],
+  "minimum_valid_fraction": 0.99,
+  "qa_example_grids": [
+    "532:541",
+    "561:552",
+    "533:572"
+  ],
+  "minimum_lc_coverage": 0.9999999999999795,
+  "minimum_dsm_coverage": 0.9999999994185176,
+  "minimum_slope_coverage": 1.0,
+  "maximum_center_error_m": 4.382013052343406e-09,
+  "elapsed_seconds": 38.42542497400427
+}

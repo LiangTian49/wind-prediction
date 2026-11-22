@@ -1,0 +1,92 @@
+{
+  "status": "fixed_date_preparation",
+  "purpose": "predeclared seasonal temporal evaluation",
+  "data_year": 2024,
+  "train_days": 60,
+  "validation_days": 28,
+  "test_days": 28,
+  "region_lat_bounds": [
+    49.5,
+    51.5
+  ],
+  "region_lon_bounds": [
+    8.5,
+    11.5
+  ],
+  "point_mapping": "data/CERRA/spatial_911958/centers.csv",
+  "groups": [
+    "T01",
+    "S01",
+    "S02",
+    "A01"
+  ],
+  "input_len": 56,
+  "forecast_steps": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "folds": [
+    {
+      "fold_id": "F01",
+      "season_representative": "spring",
+      "role": "development",
+      "train_start": "2024-01-04 00:00:00",
+      "validation_start": "2024-03-04 00:00:00",
+      "test_start": "2024-04-01 00:00:00",
+      "test_end_exclusive": "2024-04-29 00:00:00"
+    },
+    {
+      "fold_id": "F02",
+      "season_representative": "summer",
+      "role": "development",
+      "train_start": "2024-04-04 00:00:00",
+      "validation_start": "2024-06-03 00:00:00",
+      "test_start": "2024-07-01 00:00:00",
+      "test_end_exclusive": "2024-07-29 00:00:00"
+    },
+    {
+      "fold_id": "F03",
+      "season_representative": "autumn",
+      "role": "development",
+      "train_start": "2024-07-05 00:00:00",
+      "validation_start": "2024-09-03 00:00:00",
+      "test_start": "2024-10-01 00:00:00",
+      "test_end_exclusive": "2024-10-29 00:00:00"
+    },
+    {
+      "fold_id": "F04",
+      "season_representative": "winter",
+      "role": "locked_confirmation",
+      "train_start": "2024-09-04 00:00:00",
+      "validation_start": "2024-11-03 00:00:00",
+      "test_start": "2024-12-01 00:00:00",
+      "test_end_exclusive": "2024-12-29 00:00:00"
+    }
+  ],
+  "boundary_convention": "[start, end); origin-based V2 context rules and labels strictly before next boundary",
+  "no_future_data": "fit scaler/model only on training interval; validation labels before test origins",
+  "reporting": "report every fixed fold, horizon and seed; no best-fold selection",
+  "confirmation_rule": "freeze model/feature/selection rules on development folds before evaluating F04",
+  "known_exploration": "2024 June-August already explored; F02 is not an untouched confirmation set",
+  "schema_version": 1,
+  "protocol": "v2_fixed",
+  "hyperparameters": {
+    "model_type": "lstm",
+    "input_len": 56,
+    "lr": 0.001,
+    "batch_size": 64,
+    "epochs": 100,
+    "patience": 10,
+    "dropout": 0.4
+  },
+  "annual_data_dir": "data/CERRA/spatial_2024_full"
+}

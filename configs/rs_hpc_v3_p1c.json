@@ -1,0 +1,26 @@
+{
+  "experiment_version": "rs_hpc_v3",
+  "stage": "P1c",
+  "protocol": "v2_fixed",
+  "fold_manifest": "configs/seasonal_folds_2024.json",
+  "direction_dir": "data/CERRA/direction_rs_hpc_v3",
+  "folds": ["F01", "F02", "F03"],
+  "groups": ["D_T0", "D_T1", "D_S0", "D_S1"],
+  "lookback": 56,
+  "pred_len": 1,
+  "seed": 42,
+  "model_type": "lstm",
+  "lr": 0.001,
+  "dropout": 0.4,
+  "batch_size": 64,
+  "epochs": 100,
+  "patience": 10,
+  "direction_selection": {
+    "metric": "validation_RMSE",
+    "primary_pair": ["D_S1", "D_S0"],
+    "aggregation": "equal-fold mean percentage gain",
+    "enable_if": "mean gain > 0",
+    "tie": "disabled",
+    "test_use": "exploratory reporting"
+  }
+}

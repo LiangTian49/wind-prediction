@@ -1,0 +1,103 @@
+{
+  "status": "draft_not_frozen",
+  "purpose": "Independent-year confirmation after 2024 development",
+  "candidate_year": 2025,
+  "availability_fallback_year": 2023,
+  "year_selection_basis": "Data availability/product compatibility only; never test performance",
+  "selected_year": null,
+  "mode": "refit_on_new_year_only",
+  "alternative_mode": "frozen_2024_weights_and_preprocessors_not_in_primary_budget",
+  "groups": [
+    "RS_S0",
+    "RS_S1",
+    "S_COORD",
+    "S_LC",
+    "S_DSM"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "candidate_training_fits": 45,
+  "input_len": 56,
+  "pred_len": 1,
+  "lead_hours": 3,
+  "dynamic_group": "A01",
+  "dynamic_channels": 11,
+  "static_channels": 14,
+  "parameter_count": 20761,
+  "train_days": 60,
+  "validation_days": 28,
+  "test_days": 28,
+  "candidate_folds": [
+    {
+      "fold_id": "C01",
+      "train_start": "2025-01-03 00:00:00",
+      "validation_start": "2025-03-04 00:00:00",
+      "test_start": "2025-04-01 00:00:00",
+      "test_end_exclusive": "2025-04-29 00:00:00"
+    },
+    {
+      "fold_id": "C02",
+      "train_start": "2025-04-04 00:00:00",
+      "validation_start": "2025-06-03 00:00:00",
+      "test_start": "2025-07-01 00:00:00",
+      "test_end_exclusive": "2025-07-29 00:00:00"
+    },
+    {
+      "fold_id": "C03",
+      "train_start": "2025-07-05 00:00:00",
+      "validation_start": "2025-09-03 00:00:00",
+      "test_start": "2025-10-01 00:00:00",
+      "test_end_exclusive": "2025-10-29 00:00:00"
+    }
+  ],
+  "main_comparison": [
+    "RS_S1",
+    "RS_S0"
+  ],
+  "main_metric": "RMSE",
+  "main_estimand": "Equal-window mean of within-seed paired percentage gains; fixed three-seed mean within each window",
+  "secondary_comparison": [
+    "RS_S1",
+    "S_COORD"
+  ],
+  "secondary_metrics": [
+    "RMSE",
+    "MAE"
+  ],
+  "other_contrasts": "All seven predeclared P3b comparisons retained; source contrasts exploratory",
+  "date_blocks": {
+    "block_days": 3,
+    "resamples": 2000,
+    "rng_seed": 20261115,
+    "aggregate": "Independent date draws per window, shared across models and seeds within each window; equal-window mean",
+    "uncertainty": "Window-conditional weather-date variation across fixed fitted models; no seed resampling"
+  },
+  "training_template": "configs/rs_hpc_v3_p3b_v1.json",
+  "training_template_sha256": "c5923e00f0f521c1a90a2da36df97873440c821f3e4c99b552f624e2aecbf677",
+  "fold_template": "configs/seasonal_folds_2024.json",
+  "fold_template_sha256": "595967de0fb10671aae31570e3de9daf005d756f2508029b9742ba6df205c866",
+  "static_ready_sha256": "247b47e82d9d08e6505f9fef578bfca94b7c4cd6b1f63424fb82b1438497fc9d",
+  "source_files": null,
+  "source_sha256": null,
+  "extracted_ready_sha256": null,
+  "confirmation_code_sha256": null,
+  "frozen_at_utc": null,
+  "freeze_gates": [
+    "Candidate year untouched by model-error analysis",
+    "Complete matching 10m analysis product and 3h timestamps",
+    "Same target/neighborhood mapping and native grid",
+    "Finite nonnegative extracted speed and feature order",
+    "Static product acquisition/release validity checked",
+    "Training-only preprocessors and validation-only early stopping",
+    "Final selected year, windows, sources, code and metrics bound before first model fitting or test-score access"
+  ],
+  "failure_policy": "Retry infrastructure failures with identical inputs/seed; no dropping bad-performing runs, dates, groups or windows. Data mismatch invalidates freeze and requires a new version before results.",
+  "nonclaims": [
+    "No new-location or operational validation",
+    "No guaranteed positive RS gain",
+    "Reanalysis targets, not independent observed turbine wind"
+  ]
+}

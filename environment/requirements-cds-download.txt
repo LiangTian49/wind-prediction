@@ -1,0 +1,5 @@
+# Added by validated setup job 913326; existing training-library versions unchanged.
+cdsapi==0.7.7
+ecmwf-datastores-client==0.6.0
+multiurl==0.3.10
+tqdm==4.70.1

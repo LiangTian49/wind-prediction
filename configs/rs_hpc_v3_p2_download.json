@@ -1,0 +1,165 @@
+{
+  "experiment_version": "rs_hpc_v3",
+  "stage": "P2_download",
+  "checked_date": "2026-11-14",
+  "coverage_basis": "Original ROI bounding rectangle 49.5-51.5 N, 8.5-11.5 E; candidate tiles also span target-cell edges.",
+  "products": {
+    "WorldCover_2021_v200": {
+      "source": "https://esa-worldcover.org/en/data-access",
+      "license": "CC BY 4.0",
+      "doi": "10.5281/zenodo.7254221"
+    },
+    "Copernicus_GLO30_Public": {
+      "source": "https://registry.opendata.aws/copernicus-dem/",
+      "license_url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+      "release_note": "AWS registry identifies this public COG mirror as the 2021 release.",
+      "doi": "10.5270/ESA-c5d3d65"
+    }
+  },
+  "assets": [
+    {
+      "product": "WorldCover_2021_v200",
+      "release": "2021_v200",
+      "filename": "ESA_WorldCover_10m_2021_v200_N48E006_Map.tif",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N48E006_Map.tif",
+      "bytes": 94225409,
+      "etag": "\"30c299e137facc9e3b33511fdb7226a5-12\"",
+      "last_modified": "Wed, 26 Oct 2022 12:55:01 GMT"
+    },
+    {
+      "product": "WorldCover_2021_v200",
+      "release": "2021_v200",
+      "filename": "ESA_WorldCover_10m_2021_v200_N48E009_Map.tif",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N48E009_Map.tif",
+      "bytes": 94851935,
+      "etag": "\"021100b88f826240886f92bbf712e121-12\"",
+      "last_modified": "Wed, 26 Oct 2022 12:58:17 GMT"
+    },
+    {
+      "product": "WorldCover_2021_v200",
+      "release": "2021_v200",
+      "filename": "ESA_WorldCover_10m_2021_v200_N51E006_Map.tif",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N51E006_Map.tif",
+      "bytes": 100981165,
+      "etag": "\"64e2236ae968c088a91ac3b049bd62e7-13\"",
+      "last_modified": "Wed, 26 Oct 2022 12:56:20 GMT"
+    },
+    {
+      "product": "WorldCover_2021_v200",
+      "release": "2021_v200",
+      "filename": "ESA_WorldCover_10m_2021_v200_N51E009_Map.tif",
+      "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N51E009_Map.tif",
+      "bytes": 85525178,
+      "etag": "\"e3eb02eab891079e6481be3961ee38eb-11\"",
+      "last_modified": "Wed, 26 Oct 2022 12:53:36 GMT"
+    },
+    {
+      "product": "Copernicus_GLO30_Public",
+      "release": "AWS_2021_release",
+      "filename": "Copernicus_DSM_COG_10_N49_00_E008_00_DEM.tif",
+      "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_E008_00_DEM/Copernicus_DSM_COG_10_N49_00_E008_00_DEM.tif",
+      "bytes": 45132234,
+      "etag": "\"3b8ca10e9a0f39d52b7f9618791b5eb6\"",
+      "last_modified": "Mon, 09 May 2022 14:28:17 GMT"
+    },
+    {
+      "product": "Copernicus_GLO30_Public",
+      "release": "AWS_2021_release",
+      "filename": "Copernicus_DSM_COG_10_N49_00_E009_00_DEM.tif",
+      "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_E009_00_DEM/Copernicus_DSM_COG_10_N49_00_E009_00_DEM.tif",
+      "bytes": 44177216,
+      "etag": "\"1817029e15e916f62445993907e61d8a\"",
+      "last_modified": "Mon, 09 May 2022 14:28:17 GMT"
+    },
+    {
+      "product": "Copernicus_GLO30_Public",
+      "release": "AWS_2021_release",
+      "filename": "Copernicus_DSM_COG_10_N49_00_E010_00_DEM.tif",
+      "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_E010_00_DEM/Copernicus_DSM_COG_10_N49_00_E010_00_DEM.tif",
+      "bytes": 42445646,
+      "etag": "\"4c347b70156a862419779dcb207b2b12\"",
+      "last_modified": "Mon, 09 May 2022 14:28:17 GMT"
+    },
+    {
+      "product": "Copernicus_GLO30_Public",
+      "release": "AWS_2021_release",
+      "filename": "Copernicus_DSM_COG_10_N49_00_E011_00_DEM.tif",
+      "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_E011_00_DEM/Copernicus_DSM_COG_10_N49_00_E011_00_DEM.tif",
+      "bytes": 43580576,
+      "etag": "\"eb4d19fcf3a687bffb49f09d60812109\"",
+      "last_modified": "Mon, 09 May 2022 14:28:17 GMT"
+    },
+    {
+      "product": "Copernicus_GLO30_Public",
+      "release": "AWS_2021_release",
+      "filename": "Copernicus_DSM_COG_10_N50_00_E008_00_DEM.tif",
+      "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E008_00_DEM/Copernicus_DSM_COG_10_N50_00_E008_00_DEM.tif",
+      "bytes": 30741998,
+      "etag": "\"82aef78b810248bc51ffe2004b996977\"",
+      "last_modified": "Mon, 09 May 2022 14:29:06 GMT"
+    },
+    {
+      "product": "Copernicus_GLO30_Public",
+      "release": "AWS_2021_release",
+      "filename": "Copernicus_DSM_COG_10_N50_00_E009_00_DEM.tif",
+      "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E009_00_DEM/Copernicus_DSM_COG_10_N50_00_E009_00_DEM.tif",
+      "bytes": 30417963,
+      "etag": "\"3be90a4c32607bcc4c332d8ec31b63cd\"",
+      "last_modified": "Mon, 09 May 2022 14:29:06 GMT"
+    },
+    {
+      "product": "Copernicus_GLO30_Public",
+      "release": "AWS_2021_release",
+      "filename": "Copernicus_DSM_COG_10_N50_00_E010_00_DEM.tif",
+      "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E010_00_DEM/Copernicus_DSM_COG_10_N50_00_E010_00_DEM.tif",
+      "bytes": 29797276,
+      "etag": "\"f7ca6e69e7dcbdbef719410ca05fa14b\"",
+      "last_modified": "Mon, 09 May 2022 14:29:06 GMT"
+    },
+    {
+      "product": "Copernicus_GLO30_Public",
+      "release": "AWS_2021_release",
+      "filename": "Copernicus_DSM_COG_10_N50_00_E011_00_DEM.tif",
+      "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E011_00_DEM/Copernicus_DSM_COG_10_N50_00_E011_00_DEM.tif",
+      "bytes": 29872510,
+      "etag": "\"03c1d80103e5750526cc931baa8c9a45\"",
+      "last_modified": "Mon, 09 May 2022 14:29:06 GMT"
+    },
+    {
+      "product": "Copernicus_GLO30_Public",
+      "release": "AWS_2021_release",
+      "filename": "Copernicus_DSM_COG_10_N51_00_E008_00_DEM.tif",
+      "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E008_00_DEM/Copernicus_DSM_COG_10_N51_00_E008_00_DEM.tif",
+      "bytes": 30553888,
+      "etag": "\"efe79e100a70bddb3fc09b239cbb5fca\"",
+      "last_modified": "Mon, 09 May 2022 14:29:51 GMT"
+    },
+    {
+      "product": "Copernicus_GLO30_Public",
+      "release": "AWS_2021_release",
+      "filename": "Copernicus_DSM_COG_10_N51_00_E009_00_DEM.tif",
+      "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E009_00_DEM/Copernicus_DSM_COG_10_N51_00_E009_00_DEM.tif",
+      "bytes": 30670129,
+      "etag": "\"798090d9177dd655eb199cca098a87f8\"",
+      "last_modified": "Mon, 09 May 2022 14:29:52 GMT"
+    },
+    {
+      "product": "Copernicus_GLO30_Public",
+      "release": "AWS_2021_release",
+      "filename": "Copernicus_DSM_COG_10_N51_00_E010_00_DEM.tif",
+      "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E010_00_DEM/Copernicus_DSM_COG_10_N51_00_E010_00_DEM.tif",
+      "bytes": 29798870,
+      "etag": "\"d1726a7180c9995133d5e37559029797\"",
+      "last_modified": "Mon, 09 May 2022 14:29:52 GMT"
+    },
+    {
+      "product": "Copernicus_GLO30_Public",
+      "release": "AWS_2021_release",
+      "filename": "Copernicus_DSM_COG_10_N51_00_E011_00_DEM.tif",
+      "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E011_00_DEM/Copernicus_DSM_COG_10_N51_00_E011_00_DEM.tif",
+      "bytes": 29634996,
+      "etag": "\"d528b7b4a78c5d1a7349aa46bf7bad92\"",
+      "last_modified": "Mon, 09 May 2022 14:29:52 GMT"
+    }
+  ]
+}

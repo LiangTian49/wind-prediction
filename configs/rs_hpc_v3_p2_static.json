@@ -1,0 +1,28 @@
+{
+  "experiment_version": "rs_hpc_v3",
+  "stage": "P2_static",
+  "raw_dir": "data/rs_static/raw_v1",
+  "download_manifest": "configs/rs_hpc_v3_p2_download.json",
+  "centers": "data/CERRA/spatial_2024_full/centers.csv",
+  "expected_centers_sha256": "ad9e120133f95b46cba4581229a228d0bf9b4d315917aea6715f9c62fc6b2fdb",
+  "grib_audit": "result/rs_hpc_v3/P0/grib_provenance.json",
+  "expected_grid_hash": "a58ef21675b21933a7045f39e76067a9",
+  "output_dir": "data/rs_static/features_v1",
+  "slope_resolution_m": 30,
+  "center_tolerance_m": 1.0,
+  "minimum_valid_fraction": 0.99,
+  "maximum_unknown_fraction": 1e-8,
+  "geometric_fraction_tolerance": 0.001,
+  "landcover_year": 2021,
+  "wind_year": 2024,
+  "landcover_area_method": "Native raster pixel quadrilaterals intersected in CERRA projected metres",
+  "dsm_statistics": "Native pixel area-weighted mean and population standard deviation",
+  "slope_method": "Bilinear DSM on a common 30m native metric grid; Horn 3x3; all nine cells valid",
+  "missing_policy": "Retain all 98 grids and all QA flags; no imputation or point removal; READY only if every grid passes",
+  "static_scope": "Target cell only",
+  "feature_order": [
+    "lc_10", "lc_20", "lc_30", "lc_40", "lc_50", "lc_60",
+    "lc_70", "lc_80", "lc_90", "lc_95", "lc_100",
+    "dsm_mean_m", "dsm_sd_m", "dsm_slope_mean_deg"
+  ]
+}

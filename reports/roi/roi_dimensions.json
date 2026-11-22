@@ -1,0 +1,9 @@
+{
+  "nominal_roi_south_width_km": 216.6394599386426,
+  "nominal_roi_north_width_km": 207.6543416878046,
+  "nominal_roi_height_km": 222.39784689709194,
+  "unique_grids": 98,
+  "point_ids": 100,
+  "distance_method": "Great-circle on GRIB sphere radius 6371229 m",
+  "coverage": "Selected target grid points; spatially correlated known locations"
+}

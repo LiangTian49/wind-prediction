@@ -1,0 +1,11 @@
+{
+  "configurations": 36,
+  "interval_rows": 192,
+  "block_days": 3,
+  "resamples": 2000,
+  "rng_seed": 20261115,
+  "date_assignment": "target date",
+  "scope": "post hoc window-conditional, no multiplicity correction",
+  "seed_treatment": "Separate seed results and fixed-three-seed mean paired gains; shared date draws. No prediction ensemble, no seed resampling; date intervals exclude seed uncertainty.",
+  "daily_loss": "Squared error for RMSE, absolute error for MAE. Positive reduction favors model."
+}

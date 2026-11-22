@@ -1,0 +1,89 @@
+{
+  "experiment_version": "rs_hpc_v3",
+  "stage": "P3",
+  "protocol": "v2_fixed",
+  "fold_manifest": "configs/seasonal_folds_2024.json",
+  "spatial_dir": "data/CERRA/spatial_2024_full",
+  "static_dir": "data/rs_static/features_v1",
+  "folds": [
+    "F01",
+    "F02",
+    "F03"
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "initial_seeds": [
+    42,
+    43,
+    44
+  ],
+  "groups": [
+    "RS_T0",
+    "RS_T1",
+    "RS_S0",
+    "RS_S1"
+  ],
+  "dynamic_groups": {
+    "T01": {
+      "file": "center.csv",
+      "features": [
+        "ws_10",
+        "hour_sin",
+        "hour_cos"
+      ]
+    },
+    "A01": {
+      "file": "A01.csv",
+      "features": [
+        "ws_10",
+        "ws_10_dy_m10_dx_m10",
+        "ws_10_dy_m10_dx_p0",
+        "ws_10_dy_m10_dx_p10",
+        "ws_10_dy_p0_dx_m10",
+        "ws_10_dy_p0_dx_p10",
+        "ws_10_dy_p10_dx_m10",
+        "ws_10_dy_p10_dx_p0",
+        "ws_10_dy_p10_dx_p10",
+        "hour_sin",
+        "hour_cos"
+      ]
+    }
+  },
+  "lookback": 56,
+  "pred_len": 1,
+  "lr": 0.001,
+  "batch_size": 64,
+  "epochs": 100,
+  "patience": 10,
+  "architecture": "LSTM64_Dropout0.4_StaticDense8_Concat_Dense16_Dense1",
+  "direction_enabled": false,
+  "direction_selection": "runs/rs_hpc_v3/P1c/dynamic_selection.json",
+  "direction_selection_sha256": "c1319bee3e6adfff38133570b2f7688ff6f687736ce89e556c2d264539576030",
+  "static_ready_sha256": "247b47e82d9d08e6505f9fef578bfca94b7c4cd6b1f63424fb82b1438497fc9d",
+  "static_completion_sha256": "f5d91470bcf228ea42e9c81375845ed7dcdf3b377aee6524584bc18842dd6686",
+  "data_sha256": {
+    "T01": "760d2a97de83dd3d7e2f5a027293874f1961cb689f2a318ee6852590312406d5",
+    "A01": "47e69c086637d378a39416c70b390290c8c2e71a3b31db4092fdb5a9cddcc51b"
+  },
+  "legacy_sources": "result/spatial_analysis/analysis_912234/source_runs.json",
+  "p1_summary": "runs/rs_hpc_v3/P1/summary.csv",
+  "static_scope": "Target grid only; 14 raw features; train-grid StandardScaler; disabled after scaling with zero vector",
+  "scientific_scope": "Known-grid temporal development; new-time confirmation and spatial validation pending",
+  "primary_pair": [
+    "RS_S1",
+    "RS_S0"
+  ],
+  "pilot_task_indices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "initial_task_count": 36,
+  "optional_formal_task_count": 60
+}
